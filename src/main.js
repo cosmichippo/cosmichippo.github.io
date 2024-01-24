@@ -7,6 +7,7 @@ import {canvas, renderer} from './context.js';
 import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
 import {MTLLoader} from 'three/addons/loaders/MTLLoader.js';
 import { makeLights } from './lights.js';
+import {VRButton} from 'three/addons/webxr/VRButton.js';
 
 const scene = new THREE.Scene();
 
@@ -22,8 +23,6 @@ const skygeom = new THREE.SphereGeometry(50, 50, 50);
 skygeom.applyMatrix4(new THREE.Matrix4().makeScale(1, -1, 1));
 skygeom.computeVertexNormals();
 const loader = new THREE.TextureLoader();
-
-
 
 
 
@@ -178,8 +177,6 @@ sprite.translateY(-0.5);
 scene.add(sprite);
 
 
-
-
 {
 	const objLoader = new OBJLoader();
 	const mtlLoader = new MTLLoader();
@@ -211,13 +208,15 @@ scene.add(sprite);
 }
 
 const controls = new OrbitControls(camera, canvas);
-
+document.body.appendChild( VRButton.createButton( renderer ) );
+renderer.xr.enabled = true;
 
 function render(time){
 	let seconds = time * 0.001;
 	
 
 	updateLight(seconds);
+	//updateLight(seconds)
 	controls.update();
 
 
@@ -230,8 +229,9 @@ function render(time){
 		camera.updateProjectionMatrix();
 		controls.update();
 	}
-	requestAnimationFrame(render);
+	// requestAnimationFrame(render);
 
 }
 console.log(scene);
-requestAnimationFrame(render);
+//requestAnimationFrame(render);
+renderer.setAnimationLoop(render);
