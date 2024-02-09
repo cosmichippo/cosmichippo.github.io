@@ -219,10 +219,9 @@ renderer.xr.enabled = true;
 document.body.appendChild( VRButton.createButton( renderer ) );
 
 const controller1 = renderer.xr.getController(0);
-controller1.addEventListener('selectstart', (event)=>{
-	onSelectStart();
-});
-controller1.addEventListener('selectend', ()=> onSelectEnd());
+controller1.addEventListener('selectstart', onSelectStart);
+controller1.addEventListener('selectend', onSelectEnd);
+scene.add(controller1);
 // henry's
 function onSelectStart() {
 
@@ -235,7 +234,7 @@ function onSelectEnd() {
 	this.userData.isSelecting = false;
 
 	if ( INTERSECTION ) {
-
+		console.log("INTERSECTED");
 		const offsetPosition = { x: - INTERSECTION.x, y: - INTERSECTION.y, z: - INTERSECTION.z, w: 1 };
 		const offsetRotation = new THREE.Quaternion();
 		const transform = new XRRigidTransform( offsetPosition, offsetRotation );
@@ -247,6 +246,7 @@ function onSelectEnd() {
 
 }
 
+let tempMatrix = new THREE.Matrix4();
 function render(time){
 	let seconds = time * 0.001;
 	
@@ -256,20 +256,20 @@ function render(time){
 	controls.update();
 
     INTERSECTION = undefined;
+	// console.log("UPDATING");
     if ( controller1.userData.isSelecting === true ) {
 
         tempMatrix.identity().extractRotation( controller1.matrixWorld );
-
+		console.log(controller1.matrixWorld);
         raycaster.ray.origin.setFromMatrixPosition( controller1.matrixWorld );
         raycaster.ray.direction.set( 0, 0, - 1 ).applyMatrix4( tempMatrix );
-
-        const intersects = raycaster.intersectObjects( [ floor ] );
+		// console.log("RAYCASTER", raycaster.ray);
+        const intersects = raycaster.intersectObjects( [ plane ] );
 
         if ( intersects.length > 0 ) {
-
             INTERSECTION = intersects[ 0 ].point;
         }
-
+	}
 	renderer.render(scene, camera);
 	
 	if (resizeRendererToDisplaySize(renderer)) {
@@ -278,9 +278,7 @@ function render(time){
 		//controls.handleResize();
 		camera.updateProjectionMatrix();
 		controls.update();
-	}
-	// requestAnimationFrame(render);
-	}
+	}	
 }
 console.log(scene);
 //requestAnimationFrame(render);
