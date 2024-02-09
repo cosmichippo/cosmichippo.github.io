@@ -222,6 +222,10 @@ const controller1 = renderer.xr.getController(0);
 controller1.addEventListener('selectstart', onSelectStart);
 controller1.addEventListener('selectend', onSelectEnd);
 scene.add(controller1);
+const controller2 = renderer.xr.getController(1);
+controller2.addEventListener('selectstart', onSelectStart);
+controller2.addEventListener('selectend', onSelectEnd);
+scene.add(controller2);
 // henry's
 function onSelectStart() {
 
@@ -262,6 +266,19 @@ function render(time){
         tempMatrix.identity().extractRotation( controller1.matrixWorld );
 		console.log(controller1.matrixWorld);
         raycaster.ray.origin.setFromMatrixPosition( controller1.matrixWorld );
+        raycaster.ray.direction.set( 0, 0, - 1 ).applyMatrix4( tempMatrix );
+		// console.log("RAYCASTER", raycaster.ray);
+        const intersects = raycaster.intersectObjects( [ plane ] );
+
+        if ( intersects.length > 0 ) {
+            INTERSECTION = intersects[ 0 ].point;
+        }
+	}
+   if ( controller2.userData.isSelecting === true ) {
+
+        tempMatrix.identity().extractRotation( controller2.matrixWorld );
+		console.log(controller1.matrixWorld);
+        raycaster.ray.origin.setFromMatrixPosition( controller2.matrixWorld );
         raycaster.ray.direction.set( 0, 0, - 1 ).applyMatrix4( tempMatrix );
 		// console.log("RAYCASTER", raycaster.ray);
         const intersects = raycaster.intersectObjects( [ plane ] );
