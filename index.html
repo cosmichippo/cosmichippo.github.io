@@ -6,28 +6,55 @@
     <title>Juan's Website</title>
     <style type="text/css">
 
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border: 2px solid #000000;
+      border-radius: 8px;
+      background-color: #fff;
+      
+    } 
+    .header{
+        text-align: center;
+    }
+    .footer{
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #a34b4b;
+      margin: 0;
+      padding: 0;
+    }
         span {
           display: inline-block;
           width: 500px;
-        }
-        
+        } 
         </style>
 </head>
 
 <body>
-    <div id="header" width = "800" height = "500"> 
-        <h3>Who am i?</h3>
-        <span>My name is Juan-Fernando Morales.<br> I am a student and computer hobbyist studying Computer Science,
-             Applied Math and Latino Studies at UCSC. <br>I have a passion for making games and software programming. I also have a passion for skateboarding. 
-        <br> Check out some of my projects below! Also, check out some cool skate vidoes <a href = "./skateVidsList.html">here</a> 
-        </span>
-    </div>
-    <div> 
-<h3>Links to projects:</h3>
-    <ul>
-    <li><a href="./ThreeExample.html">Three JS project for school</a>
-    </li>
-    </ul>
+    <div class="container">
+
+        <div class="header"> 
+            <h3>Who am i?</h3>
+            <span>My name is Juan-Fernando Morales.<br> I am a student and computer hobbyist studying Computer Science with a minor in 
+                Applied Math at the University of California, Santa Cruz. <br>I have a passion for making games and software programming. I also have a passion for skateboarding. 
+                I am doing research currently in environmental analysis.
+            <br> Check out some of my projects below! Also, check out some cool skate vidoes <a href = "./skateVidsList.html">here</a> 
+            </span>
+        </div>
+        <div class="content"> 
+        <h3>Links to projects:</h3>
+        <ul>
+        <li><a href="./ThreeExample.html">Three JS project for school</a>
+        </li>
+        <li><a href="./Research.html">Research</a>
+        </li>
+        </ul>
+        </div>
+        <div class="footer"></div>
+
     </div>
 </body>
 
