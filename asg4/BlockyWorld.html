@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HW 3 - Juan-Fernando Morales</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="800" height="800">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+
+    <div class="slidecontainer">
+      <button id="the_button">animate</button>
+      <button id= "spot">toggle spot</button>
+      <button id= "normal">toggle normals</button>
+      <button id= "lighting">toggle lighting</button>
+    </div>
+
+    <div class="rgbcontainer">
+      <p>globalSlider <input type = "range" min = "0" max = "270" value = "0" class = "slider" id = "angleSlider"> 
+      <p>spotSlider <input type = "range" min = "0" max = "360" value = "0" class = "slider" id = "lightSlider"> 
+
+        
+      <p>lightX <input type = "range" min = "-10" max = "10" value = "1" class = "slider" id = "lightX"> 
+      <p>lightY <input type = "range" min = "-10" max = "10" value = "1" class = "slider" id = "lightY"> 
+      <p>lightZ <input type = "range" min = "-10" max = "10" value = "1" class = "slider" id = "lightZ"> 
+
+
+
+
+
+    </div>
+    <script src="Camera.js"></script>
+    <script src="Sphere.js"></script>
+    <script src="cuon-matrix-cse160.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="rendering.js"></script>
+    <script src="Cube.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
